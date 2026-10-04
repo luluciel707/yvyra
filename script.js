@@ -57,21 +57,21 @@ const INTEGRANTES = [
   },
 
   {
-    nombre: 'Postigo, Lautaro',
+    nombre: 'Lautaro, Postigo',
     cargo: 'Secretario de Gestión Comunitaria',
     contacto: '@usuario',
     foto: 'gestion.jpg'
   },
 
   {
-    nombre: 'Vallejos, Santino',
+    nombre: 'Santino, Vallejos',
     cargo: 'Secretario de Comunicación y Prensa',
     contacto: '@usuario',
     foto: 'prensa.jpg'
   },
 
   {
-    nombre: 'Arrieta, Tiziano',
+    nombre: 'Tiziano, Arrieta',
     cargo: 'Secretario de Asuntos Estudiantiles',
     contacto: '@usuario',
     foto: 'asuntos.jpg'
