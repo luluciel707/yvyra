@@ -50,7 +50,7 @@ const INTEGRANTES = [
   },
 
   {
-    nombre: 'Cespedes, Pia',
+    nombre: 'Pia, Cespedes',
     cargo: 'Secretario de Cultura, Deportes y Recreación',
     contacto: '@lucikyu7',
     foto: 'cultura.jpeg'
