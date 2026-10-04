@@ -4,7 +4,7 @@
 ========================================= */
 
 // Pegá tu Project URL entre las comillas:
-const SUPABASE_URL = 'https://sayehiisneupxkivuqmo.supabase.co/rest/v1/';
+const SUPABASE_URL = 'https://sayehiisneupxkivuqmo.supabase.co';
 
 // Pegá tu Publishable Key entre las comillas:
 const SUPABASE_KEY = 'sb_publishable_VyxX3M6CsBNEhRw_BwojtA_bPP_36wa';
