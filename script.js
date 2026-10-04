@@ -4,10 +4,10 @@
 ========================================= */
 
 // Pegá tu Project URL entre las comillas:
-const SUPABASE_URL = 'https://sayehiisneupxkivuqmo.supabase.co';
+const SUPABASE_URL = 'https://jwygveqcffvsuwbmklbj.supabase.co';
 
 // Pegá tu Publishable Key entre las comillas:
-const SUPABASE_KEY = 'sb_publishable_VyxX3M6CsBNEhRw_BwojtA_bPP_36wa';
+const SUPABASE_KEY = 'sb_publishable_A3DSf_Fw3wHDDRfA5cv0ng_wtgIhhOL';
 
 const configurado =
   !SUPABASE_URL.includes('TU-PROYECTO') &&
