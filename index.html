@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Yvyrá · Centro de estudiantes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="nav">
+    <a class="logo" href="#inicio">Yvyrá</a>
+
+    <nav>
+      <a href="#integrantes">Integrantes</a>
+      <a href="#clubs">Clubs</a>
+    </nav>
+
+    <a class="btn btn-azul" href="#clubs">Unirme</a>
+  </header>
+
+  <main>
+
+    <!-- PORTADA -->
+    <section id="inicio" class="hero">
+
+      <div class="hero-texto">
+        <h1>Yvyrá</h1>
+
+        <p>
+          El centro de estudiantes de Carmen Molina de Llano.
+          Conocé a quienes somos y sumate al club que más te guste!!.
+        </p>
+
+        <a class="btn btn-blanco" href="#clubs">
+          Elegir mi club
+        </a>
+      </div>
+
+      <!-- LOGO DEL CENTRO -->
+      <div class="hero-cuadro">
+        <img src="img/logo.png" alt="Logo del Centro de Estudiantes Yvyrá">
+      </div>
+
+    </section>
+
+    <!-- INTEGRANTES -->
+    <section id="integrantes">
+
+      <h2>Integrantes</h2>
+
+      <div id="lista-integrantes" class="grid"></div>
+
+    </section>
+
+    <!-- CLUBES E INSCRIPCIÓN -->
+    <section id="clubs">
+
+      <h2>Clubs</h2>
+
+      <div class="clubs-layout">
+
+        <div id="lista-clubs" class="grid grid-clubs"></div>
+
+        <div class="panel">
+
+          <h3>Anotate</h3>
+
+          <label>
+            Nombre
+            <input id="nombre" autocomplete="given-name" placeholder="Tu nombre">
+          </label>
+
+          <label>
+            Apellido
+            <input id="apellido" autocomplete="family-name" placeholder="Tu apellido">
+          </label>
+
+          <div class="fila">
+
+            <label>
+              Curso
+              <input id="curso" placeholder="Ej: 4°">
+            </label>
+
+            <label>
+              División
+              <input id="division" placeholder="Ej: B">
+            </label>
+
+          </div>
+
+          <p class="ayuda">
+            Tocá el club al que querés anotarte.
+          </p>
+
+          <p id="elegidos" class="elegidos">
+            Todavía no elegiste un club.
+          </p>
+
+          <button id="enviar" class="btn btn-azul" type="button">
+            Guardar mi inscripción
+          </button>
+
+          <p id="mensaje" role="status"></p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    Centro de estudiantes Yvyrá
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
