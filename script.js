@@ -272,16 +272,19 @@ $('enviar').addEventListener('click', async () => {
   try {
 console.log("INTENTANDO GUARDAR EN SUPABASE");
 
-const { error } = await db
+const { data, error } = await db
   .from('estudiantes')
   .insert({
-    nombre,
-    apellido,
-    curso,
-    division,
+    nombre: nombre,
+    apellido: apellido,
+    curso: curso,
+    division: division,
     club_id: elegido
-  });
+  })
+  .select();
 
+console.log("FILA CREADA:", data);
+console.log("ERROR:", error);
 console.log("RESPUESTA SUPABASE:", error);
 
 if (error) {
