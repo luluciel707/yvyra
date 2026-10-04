@@ -1,81 +1,30 @@
-
 /* =========================================
    1. CONEXIÓN CON SUPABASE
 ========================================= */
 
-// Pegá tu Project URL entre las comillas:
 const SUPABASE_URL = 'https://jwygveqcffvsuwbmklbj.supabase.co';
-
-// Pegá tu Publishable Key entre las comillas:
 const SUPABASE_KEY = 'sb_publishable_A3DSf_Fw3wHDDRfA5cv0ng_wtgIhhOL';
 
 const configurado =
   !SUPABASE_URL.includes('TU-PROYECTO') &&
   !SUPABASE_KEY.includes('TU_PUBLISHABLE_KEY');
 
-const db = configurado
-  ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-  : null;
+const db = configurado ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 
 /* =========================================
    2. INTEGRANTES DEL CENTRO
+   Fotos: guardalas en la carpeta img/ y escribí el nombre del archivo en "foto".
 ========================================= */
 
-// Para agregar fotos:
-// Guardalas dentro de la carpeta img/
-// y escribí el nombre del archivo en "foto".
-
 const INTEGRANTES = [
-
-  {
-    nombre: 'Bastian, Pinchetti',
-    cargo: 'Presidente',
-    contacto: '@gordi._bas',
-    foto: 'presidente.jpg'
-  },
-
-  {
-    nombre: 'Brenda, Maldonado',
-    cargo: 'Secretaria General',
-    contacto: '@brendamaldnn',
-    foto: 'secretaria.jpg'
-  },
-
-  {
-    nombre: 'Mateo, Fernande',
-    cargo: 'Secretario de Finanzas',
-    contacto: '@oetamsalocin',
-    foto: 'finanzas.jpg'
-  },
-
-  {
-    nombre: 'Pia, Cespedes',
-    cargo: 'Secretario de Cultura, Deportes y Recreación',
-    contacto: '@lucikyu7',
-    foto: 'cultura.jpeg'
-  },
-
-  {
-    nombre: 'Lautaro, Postigo',
-    cargo: 'Secretario de Gestión Comunitaria',
-    contacto: '@usuario',
-    foto: 'gestion.jpg'
-  },
-
-  {
-    nombre: 'Santino, Vallejos',
-    cargo: 'Secretario de Comunicación y Prensa',
-    contacto: '@usuario',
-    foto: 'prensa.jpg'
-  },
-
-  {
-    nombre: 'Tiziano, Arrieta',
-    cargo: 'Secretario de Asuntos Estudiantiles',
-    contacto: '@usuario',
-    foto: 'asuntos.jpg'
-  }
+  { nombre: 'Bastian, Pinchetti', cargo: 'Presidente', contacto: '@gordi._bas', foto: 'presidente.jpg' },
+  { nombre: 'Brenda, Maldonado', cargo: 'Secretaria General', contacto: '@brendamaldnn', foto: 'secretaria.jpg' },
+  { nombre: 'Mateo, Fernande', cargo: 'Secretario de Finanzas', contacto: '@oetamsalocin', foto: 'finanzas.jpg' },
+  { nombre: 'Pia, Cespedes', cargo: 'Secretario de Cultura, Deportes y Recreación', contacto: '@lucikyu7', foto: 'cultura.jpeg' },
+  { nombre: 'Lautaro, Postigo', cargo: 'Secretario de Gestión Comunitaria', contacto: '@usuario', foto: 'gestion.jpg' },
+  { nombre: 'Santino, Vallejos', cargo: 'Secretario de Comunicación y Prensa', contacto: '@usuario', foto: 'prensa.jpg' },
+  { nombre: 'Tiziano, Arrieta', cargo: 'Secretario de Asuntos Estudiantiles', contacto: '@usuario', foto: 'asuntos.jpg' }
 ];
 
 
@@ -83,15 +32,8 @@ const INTEGRANTES = [
    3. CLUBES
 ========================================= */
 
-const CLUBES_EJEMPLO = [
-  { id: 1, nombre: 'Lectura' },
-  { id: 2, nombre: 'Ajedrez' }
-];
-
-const EMOJIS = {
-  Lectura: '📚',
-  Ajedrez: '♟️'
-};
+const CLUBES_EJEMPLO = [{ id: 1, nombre: 'Lectura' }, { id: 2, nombre: 'Ajedrez' }];
+const EMOJIS = { Lectura: '📚', Ajedrez: '♟️' };
 
 let clubes = [];
 let elegido = null;
@@ -104,17 +46,20 @@ const $ = id => document.getElementById(id);
 ========================================= */
 
 function iniciales(nombre) {
-  return nombre
-    .split(' ')
-    .map(p => p[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
+  return nombre.split(/[ ,]+/).filter(Boolean).map(p => p[0]).slice(0, 2).join('').toUpperCase();
 }
 
-function aviso(texto, error = false) {
-  $('mensaje').textContent = texto;
-  $('mensaje').className = error ? 'error' : '';
+function aviso(idElemento, texto, error = false) {
+  const el = $(idElemento);
+  el.textContent = texto;
+  el.className = error ? 'aviso error' : 'aviso';
+}
+
+function crear(etiqueta, clase, texto) {
+  const el = document.createElement(etiqueta);
+  if (clase) el.className = clase;
+  if (texto) el.textContent = texto;
+  return el;
 }
 
 
@@ -123,61 +68,30 @@ function aviso(texto, error = false) {
 ========================================= */
 
 function dibujarIntegrantes() {
-
   $('lista-integrantes').innerHTML = '';
 
   INTEGRANTES.forEach(persona => {
-
-    const tarjeta = document.createElement('article');
-    tarjeta.className = 'card';
-
+    const tarjeta = crear('article', 'card');
     let foto;
 
     if (persona.foto) {
-
       foto = document.createElement('img');
       foto.src = 'img/' + persona.foto;
       foto.alt = persona.nombre;
-
       // Si no encuentra la foto, muestra las iniciales.
-      foto.onerror = () => {
-        const avatar = document.createElement('div');
-        avatar.className = 'avatar';
-        avatar.textContent = iniciales(persona.nombre);
-        foto.replaceWith(avatar);
-      };
-
+      foto.onerror = () => foto.replaceWith(crear('div', 'avatar', iniciales(persona.nombre)));
     } else {
-
-      foto = document.createElement('div');
-      foto.className = 'avatar';
-      foto.textContent = iniciales(persona.nombre);
-
+      foto = crear('div', 'avatar', iniciales(persona.nombre));
     }
 
-    const nombre = document.createElement('h3');
-    nombre.textContent = persona.nombre;
-
-    const cargo = document.createElement('p');
-    cargo.className = 'cargo';
-    cargo.textContent = persona.cargo;
-
-    const contacto = document.createElement('a');
-    contacto.textContent = persona.contacto;
-
-    if (
-      persona.contacto.includes('@') &&
-      !persona.contacto.startsWith('@')
-    ) {
+    const contacto = crear('a', '', persona.contacto);
+    if (persona.contacto.includes('@') && !persona.contacto.startsWith('@')) {
       contacto.href = 'mailto:' + persona.contacto;
     }
 
-    tarjeta.append(foto, nombre, cargo, contacto);
-
+    tarjeta.append(foto, crear('h3', '', persona.nombre), crear('span', 'cargo', persona.cargo), contacto);
     $('lista-integrantes').append(tarjeta);
-
   });
-
 }
 
 
@@ -186,50 +100,23 @@ function dibujarIntegrantes() {
 ========================================= */
 
 function dibujarClubes() {
-
   $('lista-clubs').innerHTML = '';
 
   clubes.forEach(club => {
-
-    const boton = document.createElement('button');
-
+    const boton = crear('button', 'club');
     boton.type = 'button';
-    boton.className = 'club';
-
-    boton.setAttribute(
-      'aria-pressed',
-      String(elegido === club.id)
-    );
-
-    const emoji = document.createElement('span');
-    emoji.className = 'emoji';
-    emoji.textContent = EMOJIS[club.nombre] || '✨';
-
-    const nombre = document.createElement('h3');
-    nombre.textContent = club.nombre;
-
-    boton.append(emoji, nombre);
+    boton.setAttribute('aria-pressed', String(elegido === club.id));
+    boton.append(crear('span', 'emoji', EMOJIS[club.nombre] || '✨'), crear('h3', '', club.nombre));
 
     boton.addEventListener('click', () => {
-
       elegido = elegido === club.id ? null : club.id;
-
       dibujarClubes();
-
-      const seleccionado = clubes.find(
-        c => c.id === elegido
-      );
-
-      $('elegidos').textContent = seleccionado
-        ? 'Club elegido: ' + seleccionado.nombre
-        : 'Todavía no elegiste un club.';
-
+      const sel = clubes.find(c => c.id === elegido);
+      $('elegidos').textContent = sel ? 'Club elegido: ' + sel.nombre : 'Todavía no elegiste un club.';
     });
 
     $('lista-clubs').append(boton);
-
   });
-
 }
 
 
@@ -238,135 +125,103 @@ function dibujarClubes() {
 ========================================= */
 
 $('enviar').addEventListener('click', async () => {
-
   const nombre = $('nombre').value.trim();
   const apellido = $('apellido').value.trim();
   const curso = $('curso').value.trim();
   const division = $('division').value.trim();
 
-  // Comprobar que todos los campos estén completos.
   if (!nombre || !apellido || !curso || !division) {
-    return aviso(
-      'Completá nombre, apellido, curso y división.',
-      true
-    );
+    return aviso('mensaje', 'Completá nombre, apellido, curso y división.', true);
   }
-
-  // Comprobar que haya elegido un club.
-  if (!elegido) {
-    return aviso('Elegí un club.', true);
-  }
-
-  // Comprobar la conexión con Supabase.
-  if (!db) {
-    return aviso(
-      'Falta conectar Supabase en script.js.',
-      true
-    );
-  }
+  if (!elegido) return aviso('mensaje', 'Elegí un club.', true);
+  if (!db) return aviso('mensaje', 'Falta conectar Supabase en script.js.', true);
 
   const boton = $('enviar');
   boton.disabled = true;
   boton.textContent = 'Guardando...';
 
   try {
-console.log("INTENTANDO GUARDAR EN SUPABASE");
+    const { error } = await db
+      .from('estudiantes')
+      .insert({ nombre, apellido, curso, division, club_id: elegido });
 
-const { error } = await db
-  .from('estudiantes')
-  .insert({
-    nombre: nombre,
-    apellido: apellido,
-    curso: curso,
-    division: division,
-    club_id: elegido
-  });
+    if (error) {
+      console.error('Error de Supabase:', error);
+      return aviso('mensaje', 'Error: ' + error.message, true);
+    }
 
-console.log("ERROR SUPABASE:", error);
-
-if (error) {
-  console.error('ERROR COMPLETO DE SUPABASE:', error);
-
-  return aviso(
-    'Error: ' + error.message,
-    true
-  );
-}
-console.log("RESPUESTA SUPABASE:", error);
-
-if (error) {
-  console.error('ERROR COMPLETO DE SUPABASE:', error);
-
-  return aviso(
-    'Error: ' + error.message,
-    true
-  );
-}
-    aviso('¡Listo! Tu inscripción quedó guardada.');
-
-    // Limpiar el formulario.
+    aviso('mensaje', '¡Listo! Tu inscripción quedó guardada.');
     elegido = null;
-
     dibujarClubes();
-
-    $('elegidos').textContent =
-      'Todavía no elegiste un club.';
-
-    ['nombre', 'apellido', 'curso', 'division'].forEach(id => {
-      $(id).value = '';
-    });
+    $('elegidos').textContent = 'Todavía no elegiste un club.';
+    ['nombre', 'apellido', 'curso', 'division'].forEach(id => $(id).value = '');
 
   } catch (error) {
-
     console.error(error);
-
-    aviso(
-      'Ocurrió un error al guardar la inscripción.',
-      true
-    );
-
+    aviso('mensaje', 'Ocurrió un error al guardar la inscripción.', true);
   } finally {
-
     boton.disabled = false;
     boton.textContent = 'Guardar mi inscripción';
-
   }
-
 });
 
 
 /* =========================================
-   8. INICIAR LA PÁGINA
+   8. YVYRÁ ESCUCHA
+========================================= */
+
+$('enviar-escucha').addEventListener('click', async () => {
+  const marcado = document.querySelector('input[name="tipo"]:checked');
+  const mensaje = $('mensaje-escucha').value.trim();
+  const nombre = $('escucha-nombre').value.trim() || null;
+  const curso = $('escucha-curso').value.trim() || null;
+
+  if (!marcado) return aviso('aviso-escucha', 'Elegí qué querés contarnos.', true);
+  if (mensaje.length < 5) return aviso('aviso-escucha', 'Escribí tu mensaje (mínimo 5 letras).', true);
+  if (!db) return aviso('aviso-escucha', 'Falta conectar Supabase en script.js.', true);
+
+  const boton = $('enviar-escucha');
+  boton.disabled = true;
+  boton.textContent = 'Enviando...';
+
+  try {
+    const { error } = await db
+      .from('propuestas')
+      .insert({ tipo: marcado.value, mensaje, nombre, curso });
+
+    if (error) {
+      console.error('Error de Supabase:', error);
+      return aviso('aviso-escucha', 'Error: ' + error.message, true);
+    }
+
+    aviso('aviso-escucha', '¡Gracias! Recibimos tu mensaje.');
+    marcado.checked = false;
+    ['mensaje-escucha', 'escucha-nombre', 'escucha-curso'].forEach(id => $(id).value = '');
+
+  } catch (error) {
+    console.error(error);
+    aviso('aviso-escucha', 'Ocurrió un error al enviar el mensaje.', true);
+  } finally {
+    boton.disabled = false;
+    boton.textContent = 'Enviar';
+  }
+});
+
+
+/* =========================================
+   9. INICIAR LA PÁGINA
 ========================================= */
 
 (async function iniciar() {
-
   dibujarIntegrantes();
 
   if (db) {
-
-    const { data, error } = await db
-      .from('clubes')
-      .select('id, nombre')
-      .order('nombre');
-
-    if (error) {
-
-      console.error(error);
-      clubes = CLUBES_EJEMPLO;
-
-    } else {
-
-      clubes = data;
-
-    }
-
+    const { data, error } = await db.from('clubes').select('id, nombre').order('nombre');
+    if (error) console.error(error);
+    clubes = error ? CLUBES_EJEMPLO : data;
   } else {
-
     clubes = CLUBES_EJEMPLO;
-
   }
 
   dibujarClubes();
-
 })();
