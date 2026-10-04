@@ -1,130 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Yvyrá · Centro de estudiantes</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <header class="nav">
     <a class="logo" href="#inicio">Yvyrá</a>
-
     <nav>
+      <a href="#inicio">Inicio</a>
       <a href="#integrantes">Integrantes</a>
       <a href="#clubs">Clubs</a>
+      <a href="#escucha">Yvyrá escucha</a>
     </nav>
-
-    <a class="btn btn-azul" href="#clubs">Unirme</a>
+    <a class="btn btn-azul" href="#clubs">Anotarme</a>
   </header>
 
   <main>
 
     <!-- PORTADA -->
     <section id="inicio" class="hero">
-
       <div class="hero-texto">
         <h1>Yvyrá</h1>
-
-        <p>
-          El centro de estudiantes de Carmen Molina de Llano.
-          Conocé a quienes somos y sumate al club que más te guste!!.
-        </p>
-
-        <a class="btn btn-blanco" href="#clubs">
-          Elegir mi club
-        </a>
+        <p>El centro de estudiantes de Carmen Molina de Llano. Conocé a quienes somos y sumate al club que más te guste.</p>
+        <div class="hero-botones">
+          <a class="btn btn-blanco" href="#clubs">Elegir mi club</a>
+          <a class="btn btn-mostaza" href="#escucha">Dejar una idea</a>
+        </div>
       </div>
-
-      <!-- LOGO DEL CENTRO -->
       <div class="hero-cuadro">
         <img src="img/logo.png" alt="Logo del Centro de Estudiantes Yvyrá">
       </div>
-
     </section>
 
     <!-- INTEGRANTES -->
     <section id="integrantes">
-
-      <h2>Integrantes</h2>
-
+      <h2>Integrantes <span>»</span></h2>
       <div id="lista-integrantes" class="grid"></div>
-
     </section>
 
-    <!-- CLUBES E INSCRIPCIÓN -->
+    <!-- CLUBES -->
     <section id="clubs">
-
-      <h2>Clubs</h2>
-
-      <div class="clubs-layout">
-
+      <h2>Clubs <span>»</span></h2>
+      <div class="dos-columnas">
         <div id="lista-clubs" class="grid grid-clubs"></div>
 
         <div class="panel">
-
           <h3>Anotate</h3>
+          <label>Nombre <input id="nombre" autocomplete="given-name" placeholder="Tu nombre"></label>
+          <label>Apellido <input id="apellido" autocomplete="family-name" placeholder="Tu apellido"></label>
+          <div class="fila">
+            <label>Curso <input id="curso" placeholder="Ej: 4°"></label>
+            <label>División <input id="division" placeholder="Ej: B"></label>
+          </div>
+          <p class="ayuda">Tocá el club al que querés anotarte.</p>
+          <p id="elegidos" class="elegidos">Todavía no elegiste un club.</p>
+          <button id="enviar" class="btn btn-azul" type="button">Guardar mi inscripción</button>
+          <p id="mensaje" class="aviso" role="status"></p>
+        </div>
+      </div>
+    </section>
 
-          <label>
-            Nombre
-            <input id="nombre" autocomplete="given-name" placeholder="Tu nombre">
-          </label>
+    <!-- YVYRÁ ESCUCHA -->
+    <section id="escucha">
+      <div class="escucha">
+        <div class="escucha-texto">
+          <h2>Yvyrá escucha</h2>
+          <p>Tu voz importa. Contanos tus propuestas, ideas o quejas y las vamos a leer en el centro de estudiantes.</p>
+          <p class="nota">Podés dejar tu nombre o hacerlo de forma anónima: es opcional.</p>
+        </div>
 
-          <label>
-            Apellido
-            <input id="apellido" autocomplete="family-name" placeholder="Tu apellido">
+        <div class="panel">
+          <fieldset>
+            <legend>¿Qué querés contarnos?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="tipo" value="propuesta"><span>Propuesta</span></label>
+              <label class="chip"><input type="radio" name="tipo" value="idea"><span>Idea</span></label>
+              <label class="chip"><input type="radio" name="tipo" value="queja"><span>Queja</span></label>
+              <label class="chip"><input type="radio" name="tipo" value="otro"><span>Otro</span></label>
+            </div>
+          </fieldset>
+
+          <label>Tu mensaje
+            <textarea id="mensaje-escucha" rows="5" maxlength="1000" placeholder="Escribí acá..."></textarea>
           </label>
 
           <div class="fila">
-
-            <label>
-              Curso
-              <input id="curso" placeholder="Ej: 4°">
-            </label>
-
-            <label>
-              División
-              <input id="division" placeholder="Ej: B">
-            </label>
-
+            <label>Nombre (opcional) <input id="escucha-nombre" maxlength="60"></label>
+            <label>Curso (opcional) <input id="escucha-curso" maxlength="20"></label>
           </div>
 
-          <p class="ayuda">
-            Tocá el club al que querés anotarte.
-          </p>
-
-          <p id="elegidos" class="elegidos">
-            Todavía no elegiste un club.
-          </p>
-
-          <button id="enviar" class="btn btn-azul" type="button">
-            Guardar mi inscripción
-          </button>
-
-          <p id="mensaje" role="status"></p>
-
+          <button id="enviar-escucha" class="btn btn-azul" type="button">Enviar</button>
+          <p id="aviso-escucha" class="aviso" role="status"></p>
         </div>
-
       </div>
-
     </section>
 
   </main>
 
-  <footer>
-    Centro de estudiantes Yvyrá
-  </footer>
+  <footer>Centro de estudiantes Yvyrá</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
