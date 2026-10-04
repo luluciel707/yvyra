@@ -31,21 +31,21 @@ const INTEGRANTES = [
   {
     nombre: 'Bastian, Pinchetti',
     cargo: 'Presidente',
-    contacto: '@usuario',
+    contacto: '@gordi._bas',
     foto: 'presidente.jpg'
   },
 
   {
     nombre: 'Brenda, Maldonado',
     cargo: 'Secretaria General',
-    contacto: '@usuario',
+    contacto: '@brendamaldnn',
     foto: 'secretaria.jpg'
   },
 
   {
-    nombre: 'Mateo, Fernandez',
+    nombre: 'Mateo, Fernande',
     cargo: 'Secretario de Finanzas',
-    contacto: '@usuario',
+    contacto: '@oetamsalocin',
     foto: 'finanzas.jpg'
   },
 
