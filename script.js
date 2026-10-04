@@ -281,14 +281,14 @@ $('enviar').addEventListener('click', async () => {
         club_id: elegido
       });
 
-    if (error) {
-      console.error(error);
-      return aviso(
-        'No se pudo guardar. Probá de nuevo.',
-        true
-      );
-    }
+  if (error) {
+  console.error('ERROR COMPLETO DE SUPABASE:', error);
 
+  return aviso(
+    'Error: ' + error.message,
+    true
+  );
+}
     aviso('¡Listo! Tu inscripción quedó guardada.');
 
     // Limpiar el formulario.
