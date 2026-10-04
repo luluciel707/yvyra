@@ -270,18 +270,21 @@ $('enviar').addEventListener('click', async () => {
   boton.textContent = 'Guardando...';
 
   try {
+console.log("INTENTANDO GUARDAR EN SUPABASE");
 
-    const { error } = await db
-      .from('estudiantes')
-      .insert({
-        nombre,
-        apellido,
-        curso,
-        division,
-        club_id: elegido
-      });
+const { error } = await db
+  .from('estudiantes')
+  .insert({
+    nombre,
+    apellido,
+    curso,
+    division,
+    club_id: elegido
+  });
 
-  if (error) {
+console.log("RESPUESTA SUPABASE:", error);
+
+if (error) {
   console.error('ERROR COMPLETO DE SUPABASE:', error);
 
   return aviso(
