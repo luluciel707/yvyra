@@ -129,9 +129,13 @@ $('enviar').addEventListener('click', async () => {
   const apellido = $('apellido').value.trim();
   const curso = $('curso').value.trim();
   const division = $('division').value.trim();
+  const telefono = $('telefono').value.trim();
 
-  if (!nombre || !apellido || !curso || !division) {
-    return aviso('mensaje', 'Completá nombre, apellido, curso y división.', true);
+  if (!nombre || !apellido || !curso || !division || !telefono) {
+    return aviso('mensaje', 'Completá nombre, apellido, curso, división y teléfono.', true);
+  }
+  if (!/^[0-9+\s()-]{8,20}$/.test(telefono)) {
+    return aviso('mensaje', 'Revisá el teléfono: usá solo números (mínimo 8).', true);
   }
   if (!elegido) return aviso('mensaje', 'Elegí un club.', true);
   if (!db) return aviso('mensaje', 'Falta conectar Supabase en script.js.', true);
@@ -143,7 +147,7 @@ $('enviar').addEventListener('click', async () => {
   try {
     const { error } = await db
       .from('estudiantes')
-      .insert({ nombre, apellido, curso, division, club_id: elegido });
+      .insert({ nombre, apellido, curso, division, telefono, club_id: elegido });
 
     if (error) {
       console.error('Error de Supabase:', error);
@@ -154,7 +158,7 @@ $('enviar').addEventListener('click', async () => {
     elegido = null;
     dibujarClubes();
     $('elegidos').textContent = 'Todavía no elegiste un club.';
-    ['nombre', 'apellido', 'curso', 'division'].forEach(id => $(id).value = '');
+    ['nombre', 'apellido', 'curso', 'division', 'telefono'].forEach(id => $(id).value = '');
 
   } catch (error) {
     console.error(error);
@@ -164,7 +168,6 @@ $('enviar').addEventListener('click', async () => {
     boton.textContent = 'Guardar mi inscripción';
   }
 });
-
 
 /* =========================================
    8. YVYRÁ ESCUCHA
