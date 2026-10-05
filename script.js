@@ -18,12 +18,12 @@ const db = configurado ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : nul
 ========================================= */
 
 const INTEGRANTES = [
-  { nombre: 'Bastian, Pinchetti', cargo: 'Presidente', contacto: '@gordi._bas', foto: 'presidente.jpg' },
+  { nombre: 'Bastian, Pinchetti', cargo: 'Presidente', contacto: '@gordi._bas', foto: 'presidente.jpeg' },
   { nombre: 'Brenda, Maldonado', cargo: 'Secretaria General', contacto: '@brendamaldnn', foto: 'secretaria.jpg' },
   { nombre: 'Mateo, Fernande', cargo: 'Secretario de Finanzas', contacto: '@oetamsalocin', foto: 'finanzas.jpg' },
   { nombre: 'Pia, Cespedes', cargo: 'Secretario de Cultura, Deportes y Recreación', contacto: '@lucikyu7', foto: 'cultura.jpeg' },
   { nombre: 'Lautaro, Postigo', cargo: 'Secretario de Gestión Comunitaria', contacto: '@usuario', foto: 'gestion.jpg' },
-  { nombre: 'Santino, Vallejos', cargo: 'Secretario de Comunicación y Prensa', contacto: '@usuario', foto: 'prensa.jpg' },
+  { nombre: 'Santino, Vallejos', cargo: 'Secretario de Comunicación y Prensa', contacto: '@usuario', foto: 'prensa.jpeg' },
   { nombre: 'Tiziano, Arrieta', cargo: 'Secretario de Asuntos Estudiantiles', contacto: '@usuario', foto: 'asuntos.jpg' }
 ];
 
