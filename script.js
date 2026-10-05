@@ -35,6 +35,16 @@ const INTEGRANTES = [
 const CLUBES_EJEMPLO = [{ id: 1, nombre: 'Lectura' }, { id: 2, nombre: 'Ajedrez' }];
 const EMOJIS = { Lectura: '📚', Ajedrez: '♟️' };
 
+const INFO_CLUBES = {
+  Ajedrez: {
+    resumen: 'Para quienes ya saben jugar o quieren aprender: se arman niveles para que todos avancen a su ritmo. Los sábados (u otro horario que les quede cómodo) pueden competir con sistema suizo o jugar entre sí. Se fomentan las partidas limpias, el respeto y la ayuda a los que recién empiezan. Además, el centro los apoya para competir con otras escuelas.',
+    responsables: 'Con profesor guía · Centro: Mateo Fernande (Finanzas)'
+  },
+  Lectura: {
+    resumen: 'Para quienes disfrutan leer narrativas de todo tipo y quieren debatir y dar su opinión crítica. Cada mes se elige un libro, y se reúnen (por ejemplo un sábado) a charlar sobre lo leído. También pueden hacer exposiciones de sus lecturas para toda la escuela.',
+    responsables: 'Con la profesora Noelia May · Centro: Bastian Pinchetti (Presidente)'
+  }
+};
 let clubes = [];
 let elegido = null;
 
@@ -106,7 +116,11 @@ function dibujarClubes() {
     const boton = crear('button', 'club');
     boton.type = 'button';
     boton.setAttribute('aria-pressed', String(elegido === club.id));
-    boton.append(crear('span', 'emoji', EMOJIS[club.nombre] || '✨'), crear('h3', '', club.nombre));
+   const info = INFO_CLUBES[club.nombre];
+boton.append(crear('span', 'emoji', EMOJIS[club.nombre] || '✨'), crear('h3', '', club.nombre));
+if (info) {
+  boton.append(crear('span', 'resumen', info.resumen), crear('span', 'responsables', info.responsables));
+}
 
     boton.addEventListener('click', () => {
       elegido = elegido === club.id ? null : club.id;
