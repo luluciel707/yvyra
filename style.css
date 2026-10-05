@@ -662,3 +662,27 @@ footer {
 #lista-integrantes{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
 #lista-integrantes .card{flex:0 1 240px;text-align:center}
 #lista-integrantes .card img,#lista-integrantes .avatar{margin:0 auto 12px}
+/* INFO DE CLUBS */
+.grid-clubs { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.club .resumen,
+.club .responsables { display: block; font-size: .92rem; }
+.club .resumen { margin-top: 6px; }
+.club .responsables { margin-top: 10px; font-size: .85rem; font-weight: 800; color: var(--azul-fuerte); }
+
+/* INTEGRANTES DE 2 EN 2 EN CELULAR */
+@media (max-width: 760px) {
+  #lista-integrantes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  #lista-integrantes .card { flex: none; padding: 14px; }
+  #lista-integrantes .card img,
+  #lista-integrantes .avatar { width: 64px; height: 64px; font-size: 1.3rem; }
+  #lista-integrantes .card h3 { font-size: 1rem; }
+  #lista-integrantes .cargo { font-size: .75rem; padding: 3px 10px; }
+  #lista-integrantes .card a { font-size: .8rem; }
+
+  /* el 7º integrante queda solo y centrado abajo */
+  #lista-integrantes .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 6px);
+  }
+}
