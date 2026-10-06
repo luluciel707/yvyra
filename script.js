@@ -255,5 +255,83 @@ $('enviar-escucha').addEventListener('click', async () => {
   dibujarClubes();
 })();
 
+/* =========================================
+   11. COMENTARIOS
+========================================= */
 
+let ultimoComentario = 0;
 
+async function cargarComentarios() {
+  const lista = $('lista-comentarios');
+  lista.innerHTML = '';
+
+  if (!db) {
+    lista.append(crear('p', 'ayuda', 'Los comentarios no están disponibles por ahora.'));
+    return;
+  }
+
+  const { data, error } = await db
+    .from('comentarios')
+    .select('nombre, mensaje, created_at')
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.error(error);
+    lista.append(crear('p', 'ayuda', 'No se pudieron cargar los comentarios.'));
+    return;
+  }
+
+  if (!data.length) {
+    lista.append(crear('p', 'ayuda', 'Todavía no hay comentarios. ¡Sé el primero!'));
+    return;
+  }
+
+  data.forEach(c => {
+    const item = crear('article', 'comentario');
+    const cabecera = crear('div', 'comentario-cabecera');
+    cabecera.append(
+      crear('strong', '', c.nombre || 'Anónimo'),
+      crear('span', 'fecha', new Date(c.created_at).toLocaleDateString('es-AR'))
+    );
+    item.append(cabecera, crear('p', '', c.mensaje));
+    lista.append(item);
+  });
+}
+
+$('enviar-comentario').addEventListener('click', async () => {
+  const nombre = $('comentario-nombre').value.trim() || null;
+  const mensaje = $('comentario-mensaje').value.trim();
+
+  if (mensaje.length < 3) return aviso('aviso-comentario', 'Escribí tu comentario (mínimo 3 letras).', true);
+  if (!db) return aviso('aviso-comentario', 'Falta conectar Supabase en script.js.', true);
+  if (Date.now() - ultimoComentario < 30000) {
+    return aviso('aviso-comentario', 'Esperá unos segundos antes de enviar otro.', true);
+  }
+
+  const boton = $('enviar-comentario');
+  boton.disabled = true;
+  boton.textContent = 'Enviando...';
+
+  try {
+    const { error } = await db.from('comentarios').insert({ nombre, mensaje });
+
+    if (error) {
+      console.error('Error de Supabase:', error);
+      return aviso('aviso-comentario', 'Error: ' + error.message, true);
+    }
+
+    ultimoComentario = Date.now();
+    aviso('aviso-comentario', '¡Gracias! Tu comentario se va a publicar cuando lo revisemos.');
+    ['comentario-nombre', 'comentario-mensaje'].forEach(id => $(id).value = '');
+
+  } catch (error) {
+    console.error(error);
+    aviso('aviso-comentario', 'Ocurrió un error al enviar el comentario.', true);
+  } finally {
+    boton.disabled = false;
+    boton.textContent = 'Comentar';
+  }
+});
+
+cargarComentarios();
