@@ -24,7 +24,7 @@ const INTEGRANTES = [
   { nombre: 'Pia, Cespedes', cargo: 'Secretario de Cultura, Deportes y Recreación', contacto: '@lucikyu7', foto: 'cultura.jpeg' },
   { nombre: 'Lautaro, Postigo', cargo: 'Secretario de Gestión Comunitaria', contacto: '@lal0chiquito', foto: 'lalox.jpeg' },
   { nombre: 'Santino, Vallejos', cargo: 'Secretario de Comunicación y Prensa', contacto: '@Sanntino_vallejos1', foto: 'prensa.jpeg' },
-  { nombre: 'Tiziano, Arrieta', cargo: 'Secretario de Asuntos Estudiantiles', contacto: '@usuario', foto: 'asuntos.jpg' }
+  { nombre: 'Tiziano, Arrieta', cargo: 'Secretario de Asuntos Estudiantiles', foto: 'asuntos.jpg' }
 ];
 
 
