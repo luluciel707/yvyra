@@ -115,7 +115,27 @@
   </main>
 
   <footer>Centro de estudiantes Yvyrá</footer>
+<script>
+  (function () {
+    var raiz = document.documentElement;
+    var boton = document.getElementById('tema');
 
+    function actualizar() {
+      var oscuro = raiz.getAttribute('data-tema') === 'oscuro';
+      boton.textContent = oscuro ? '☀️' : '🌙';
+      boton.setAttribute('aria-label', oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+    }
+
+    boton.addEventListener('click', function () {
+      var nuevo = raiz.getAttribute('data-tema') === 'oscuro' ? 'claro' : 'oscuro';
+      raiz.setAttribute('data-tema', nuevo);
+      try { localStorage.setItem('tema', nuevo); } catch (e) {}
+      actualizar();
+    });
+
+    actualizar();
+  })();
+</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
