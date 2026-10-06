@@ -798,38 +798,35 @@ footer {
     radial-gradient(circle at 4% 82%, rgba(38, 53, 80, .9) 0 230px, transparent 231px),
     var(--crema);
 }
-.card h3 {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #1F2F52 !important;
-  font-size: 1.2rem !important;
-}
+/* =========================================================
+   TEXTO DE LAS TARJETAS — MODO CLARO Y OSCURO
+   ========================================================= */
+
 .card h3 {
   display: block;
   visibility: visible;
   opacity: 1;
-  color: #1F2F52;
+  color: var(--tinta);
   font-size: 1.2rem;
 }
 
 .card .cargo {
-  color: #4C74AE;
+  color: var(--tinta);
 }
 
 .card a {
-  color: #4C74AE;
+  color: var(--azul-fuerte);
 }
 
 /* 🌙 MODO OSCURO */
-[data-theme="dark"] .card h3 {
+:root[data-tema="oscuro"] .card h3 {
   color: #ffffff;
 }
 
-[data-theme="dark"] .card .cargo {
+:root[data-tema="oscuro"] .card .cargo {
   color: #D3DDE8;
 }
 
-[data-theme="dark"] .card a {
-  color: #82A7D8;
+:root[data-tema="oscuro"] .card a {
+  color: #8db4ec;
 }
