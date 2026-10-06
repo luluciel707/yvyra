@@ -6,6 +6,15 @@
   <title>Yvyrá · Centro de estudiantes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+ <script>
+  (function () {
+    try {
+      var guardado = localStorage.getItem('tema');
+      var oscuro = guardado ? guardado === 'oscuro' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');
+    } catch (e) {}
+  })();
+</script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,6 +27,7 @@
       <a href="#clubs">Clubs</a>
       <a href="#escucha">Yvyrá escucha</a>
     </nav>
+    <button id="tema" class="btn-tema" type="button" aria-label="Cambiar a modo oscuro">🌙</button>
     <a class="btn btn-azul" href="#clubs">Anotarme</a>
   </header>
 
