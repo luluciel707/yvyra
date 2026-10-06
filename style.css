@@ -686,3 +686,115 @@ footer {
     width: calc(50% - 6px);
   }
 }
+/* =========================================================
+   MODO OSCURO
+   ========================================================= */
+
+.btn-tema {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--cielo);
+  font-size: 1.2rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.btn-tema:focus-visible {
+  outline: 3px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+:root[data-tema="oscuro"] {
+  --crema: #131c2e;
+  --cielo: #263550;
+  --mostaza: #FFCD54;
+  --azul: #5f86bd;
+  --azul-fuerte: #8db4ec;
+  --tinta: #eaf0fa;
+  --blanco: #1c2840;
+  --sombra: 0 10px 28px rgba(0, 0, 0, .35);
+}
+
+/* Barra de navegación */
+:root[data-tema="oscuro"] .nav {
+  background: rgba(19, 28, 46, .88);
+}
+
+/* Portada: azul más profundo, texto blanco */
+:root[data-tema="oscuro"] .hero {
+  background: linear-gradient(120deg, #2c4a7a 0%, #4a6fa5 100%);
+}
+
+:root[data-tema="oscuro"] .hero-cuadro {
+  box-shadow: -14px 14px 0 #0b1220;
+}
+
+/* Botones */
+:root[data-tema="oscuro"] .btn-azul {
+  background: #4C74AE;
+  color: #fff;
+}
+
+:root[data-tema="oscuro"] .btn-azul:hover {
+  background: #6b92cc;
+}
+
+:root[data-tema="oscuro"] .btn-blanco {
+  background: #eaf0fa;
+  color: #1F2F52;
+}
+
+:root[data-tema="oscuro"] .btn-mostaza,
+:root[data-tema="oscuro"] .elegidos {
+  color: #1F2F52;
+}
+
+/* Formularios */
+:root[data-tema="oscuro"] input,
+:root[data-tema="oscuro"] textarea {
+  background: #131c2e;
+  border-color: var(--cielo);
+}
+
+:root[data-tema="oscuro"] .aviso.error {
+  color: #ff8a80;
+}
+
+:root[data-tema="oscuro"] .chip input:checked + span {
+  background: #4C74AE;
+  color: #fff;
+}
+
+/* Tarjetas de integrantes y clubs */
+:root[data-tema="oscuro"] .avatar,
+:root[data-tema="oscuro"] .card img {
+  color: #131c2e;
+}
+
+:root[data-tema="oscuro"] .club[aria-pressed="true"] {
+  background: #263550;
+}
+
+/* Yvyrá escucha: se queda mostaza, así que el texto vuelve a ser oscuro */
+:root[data-tema="oscuro"] .escucha-texto {
+  color: #1F2F52;
+}
+
+:root[data-tema="oscuro"] .escucha .panel {
+  color: #eaf0fa;
+}
+
+/* Fondo con círculos más sutiles */
+:root[data-tema="oscuro"] body {
+  background:
+    radial-gradient(circle at 10% 6%, rgba(95, 134, 189, .22) 0 170px, transparent 171px),
+    radial-gradient(circle at 94% 38%, rgba(255, 205, 84, .12) 0 200px, transparent 201px),
+    radial-gradient(circle at 4% 82%, rgba(38, 53, 80, .9) 0 230px, transparent 231px),
+    var(--crema);
+}
