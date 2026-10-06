@@ -94,12 +94,25 @@ function dibujarIntegrantes() {
       foto = crear('div', 'avatar', iniciales(persona.nombre));
     }
 
-    const contacto = crear('a', '', persona.contacto);
-    if (persona.contacto.includes('@') && !persona.contacto.startsWith('@')) {
-      contacto.href = 'mailto:' + persona.contacto;
-    }
+   let contacto = null;
 
-    tarjeta.append(foto, crear('h3', '', persona.nombre), crear('span', 'cargo', persona.cargo), contacto);
+if (persona.contacto) {
+  contacto = crear('a', '', persona.contacto);
+
+  if (persona.contacto.includes('@') && !persona.contacto.startsWith('@')) {
+    contacto.href = 'mailto:' + persona.contacto;
+  }
+}
+
+tarjeta.append(
+  foto,
+  crear('h3', '', persona.nombre),
+  crear('span', 'cargo', persona.cargo)
+);
+
+if (contacto) {
+  tarjeta.append(contacto);
+}
     $('lista-integrantes').append(tarjeta);
   });
 }
