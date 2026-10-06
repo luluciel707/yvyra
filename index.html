@@ -6,15 +6,15 @@
   <title>Yvyrá · Centro de estudiantes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
- <script>
-  (function () {
-    try {
-      var guardado = localStorage.getItem('tema');
-      var oscuro = guardado ? guardado === 'oscuro' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');
-    } catch (e) {}
-  })();
-</script>
+  <script>
+    (function () {
+      try {
+        var guardado = localStorage.getItem('tema');
+        var oscuro = guardado ? guardado === 'oscuro' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,6 +26,7 @@
       <a href="#integrantes">Integrantes</a>
       <a href="#clubs">Clubs</a>
       <a href="#escucha">Yvyrá escucha</a>
+      <a href="#comentarios">Comentarios</a>
     </nav>
     <button id="tema" class="btn-tema" type="button" aria-label="Cambiar a modo oscuro">🌙</button>
     <a class="btn btn-azul" href="#clubs">Anotarme</a>
@@ -64,8 +65,8 @@
           <h3>Anotate</h3>
           <label>Nombre <input id="nombre" autocomplete="given-name" placeholder="Tu nombre"></label>
           <label>Apellido <input id="apellido" autocomplete="family-name" placeholder="Tu apellido"></label>
+          <label>Teléfono <input id="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 3794 123456"></label>
           <div class="fila">
-            <label>Teléfono <input id="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 3794 123456"></label>
             <label>Curso <input id="curso" placeholder="Ej: 4°"></label>
             <label>División <input id="division" placeholder="Ej: B"></label>
           </div>
@@ -112,30 +113,52 @@
       </div>
     </section>
 
+    <!-- COMENTARIOS -->
+    <section id="comentarios">
+      <h2>Comentarios <span>»</span></h2>
+      <div class="dos-columnas">
+        <div id="lista-comentarios" class="lista-comentarios"></div>
+
+        <div class="panel">
+          <h3>Dejá tu comentario</h3>
+          <label>Nombre (opcional) <input id="comentario-nombre" maxlength="60" placeholder="Anónimo"></label>
+          <label>Comentario
+            <textarea id="comentario-mensaje" rows="4" maxlength="500" placeholder="Escribí acá..."></textarea>
+          </label>
+          <p class="ayuda">Los comentarios se publican después de que el centro los revise.</p>
+          <button id="enviar-comentario" class="btn btn-azul" type="button">Comentar</button>
+          <p id="aviso-comentario" class="aviso" role="status"></p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>Centro de estudiantes Yvyrá</footer>
-<script>
-  (function () {
-    var raiz = document.documentElement;
-    var boton = document.getElementById('tema');
 
-    function actualizar() {
-      var oscuro = raiz.getAttribute('data-tema') === 'oscuro';
-      boton.textContent = oscuro ? '☀️' : '🌙';
-      boton.setAttribute('aria-label', oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
-    }
+  <!-- MODO OSCURO -->
+  <script>
+    (function () {
+      var raiz = document.documentElement;
+      var boton = document.getElementById('tema');
 
-    boton.addEventListener('click', function () {
-      var nuevo = raiz.getAttribute('data-tema') === 'oscuro' ? 'claro' : 'oscuro';
-      raiz.setAttribute('data-tema', nuevo);
-      try { localStorage.setItem('tema', nuevo); } catch (e) {}
+      function actualizar() {
+        var oscuro = raiz.getAttribute('data-tema') === 'oscuro';
+        boton.textContent = oscuro ? '☀️' : '🌙';
+        boton.setAttribute('aria-label', oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      }
+
+      boton.addEventListener('click', function () {
+        var nuevo = raiz.getAttribute('data-tema') === 'oscuro' ? 'claro' : 'oscuro';
+        raiz.setAttribute('data-tema', nuevo);
+        try { localStorage.setItem('tema', nuevo); } catch (e) {}
+        actualizar();
+      });
+
       actualizar();
-    });
+    })();
+  </script>
 
-    actualizar();
-  })();
-</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
