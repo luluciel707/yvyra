@@ -22,7 +22,7 @@ const INTEGRANTES = [
   { nombre: 'Brenda, Maldonado', cargo: 'Secretaria General', contacto: '@brendamaldnn', foto: 'secretaria.jpg' },
   { nombre: 'Mateo, Fernande', cargo: 'Secretario de Finanzas', contacto: '@oetamsalocin', foto: 'finanzas.jpg' },
   { nombre: 'Pia, Cespedes', cargo: 'Secretario de Cultura, Deportes y Recreación', contacto: '@lucikyu7', foto: 'cultura.jpeg' },
-  { nombre: 'Lautaro, Postigo', cargo: 'Secretario de Gestión Comunitaria', contacto: '@usuario', foto: 'gestion.jpg' },
+  { nombre: 'Lautaro, Postigo', cargo: 'Secretario de Gestión Comunitaria', contacto: '@lal0chiquito', foto: 'lalox.jpeg' },
   { nombre: 'Santino, Vallejos', cargo: 'Secretario de Comunicación y Prensa', contacto: '@usuario', foto: 'prensa.jpeg' },
   { nombre: 'Tiziano, Arrieta', cargo: 'Secretario de Asuntos Estudiantiles', contacto: '@usuario', foto: 'asuntos.jpg' }
 ];
