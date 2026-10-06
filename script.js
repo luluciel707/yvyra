@@ -224,7 +224,6 @@ $('enviar-escucha').addEventListener('click', async () => {
   }
 });
 
-
 /* =========================================
    9. INICIAR LA PÁGINA
 ========================================= */
@@ -238,7 +237,13 @@ $('enviar-escucha').addEventListener('click', async () => {
     clubes = error ? CLUBES_EJEMPLO : data;
   } else {
     clubes = CLUBES_EJEMPLO;
-     /* =========================================
+  }
+
+  dibujarClubes();
+})();
+
+
+/* =========================================
    10. MODO OSCURO
 ========================================= */
 
@@ -260,8 +265,4 @@ $('enviar-escucha').addEventListener('click', async () => {
   });
 
   actualizar();
-})();
-  }
-
-  dibujarClubes();
 })();
