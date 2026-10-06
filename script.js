@@ -243,26 +243,4 @@ $('enviar-escucha').addEventListener('click', async () => {
 })();
 
 
-/* =========================================
-   10. MODO OSCURO
-========================================= */
 
-(function temaOscuro() {
-  const boton = $('tema');
-  const raiz = document.documentElement;
-
-  function actualizar() {
-    const oscuro = raiz.getAttribute('data-tema') === 'oscuro';
-    boton.textContent = oscuro ? '☀️' : '🌙';
-    boton.setAttribute('aria-label', oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
-  }
-
-  boton.addEventListener('click', () => {
-    const nuevo = raiz.getAttribute('data-tema') === 'oscuro' ? 'claro' : 'oscuro';
-    raiz.setAttribute('data-tema', nuevo);
-    try { localStorage.setItem('tema', nuevo); } catch (e) {}
-    actualizar();
-  });
-
-  actualizar();
-})();
