@@ -830,3 +830,37 @@ footer {
 :root[data-tema="oscuro"] .card a {
   color: #8db4ec;
 }
+/* COMENTARIOS */
+.lista-comentarios {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+
+  max-height: 520px;
+  padding: 4px;
+  overflow-y: auto;
+}
+
+.comentario {
+  padding: 16px 20px;
+
+  background: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+
+.comentario-cabecera {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.comentario p {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.comentario .fecha {
+  font-size: .8rem;
+  opacity: .7;
+}
