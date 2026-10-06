@@ -798,3 +798,10 @@ footer {
     radial-gradient(circle at 4% 82%, rgba(38, 53, 80, .9) 0 230px, transparent 231px),
     var(--crema);
 }
+.card h3 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #1F2F52 !important;
+  font-size: 1.2rem !important;
+}
